@@ -1,0 +1,8 @@
+# compute-vad --config=conf/vad.conf scp:exp/Audio_2mix_min/pretrain/data/split40/9/feats.scp ark,scp:/home/panzexu/workspace/kaldi/egs/voxceleb/v3/exp/Audio_2mix_min/pretrain/VAD/vad_data.9.ark,/home/panzexu/workspace/kaldi/egs/voxceleb/v3/exp/Audio_2mix_min/pretrain/VAD/vad_data.9.scp 
+# Started at Sat Aug 15 00:42:44 +08 2020
+#
+compute-vad --config=conf/vad.conf scp:exp/Audio_2mix_min/pretrain/data/split40/9/feats.scp ark,scp:/home/panzexu/workspace/kaldi/egs/voxceleb/v3/exp/Audio_2mix_min/pretrain/VAD/vad_data.9.ark,/home/panzexu/workspace/kaldi/egs/voxceleb/v3/exp/Audio_2mix_min/pretrain/VAD/vad_data.9.scp 
+LOG (compute-vad[5.5.771~1-82833]:main():compute-vad.cc:95) Applied energy based voice activity detection; processed 1120 utterances successfully; 0 had empty features, and 0 were completely unvoiced.
+LOG (compute-vad[5.5.771~1-82833]:main():compute-vad.cc:99) Proportion of voiced frames was 0.978631 over 504147 frames.
+# Accounting: time=0 threads=1
+# Ended (code 0) at Sat Aug 15 00:42:44 +08 2020, elapsed time 0 seconds
