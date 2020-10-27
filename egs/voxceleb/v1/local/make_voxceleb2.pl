@@ -19,12 +19,12 @@ if (`which ffmpeg` eq "") {
 
 ($data_base, $dataset, $out_dir) = @ARGV;
 
-if ("$dataset" ne "dev" && "$dataset" ne "test") {
+if ("$dataset" ne "train" && "$dataset" ne "test") {
   die "dataset parameter must be 'dev' or 'test'!";
 }
 
-opendir my $dh, "$data_base/$dataset/aac" or die "Cannot open directory: $!";
-my @spkr_dirs = grep {-d "$data_base/$dataset/aac/$_" && ! /^\.{1,2}$/} readdir($dh);
+opendir my $dh, "$data_base/$dataset" or die "Cannot open directory: $!";
+my @spkr_dirs = grep {-d "$data_base/$dataset/$_" && ! /^\.{1,2}$/} readdir($dh);
 closedir $dh;
 
 if (system("mkdir -p $out_dir") != 0) {
@@ -37,20 +37,20 @@ open(WAV, ">", "$out_dir/wav.scp") or die "Could not open the output file $out_d
 foreach (@spkr_dirs) {
   my $spkr_id = $_;
 
-  opendir my $dh, "$data_base/$dataset/aac/$spkr_id/" or die "Cannot open directory: $!";
-  my @rec_dirs = grep {-d "$data_base/$dataset/aac/$spkr_id/$_" && ! /^\.{1,2}$/} readdir($dh);
+  opendir my $dh, "$data_base/$dataset/$spkr_id/" or die "Cannot open directory: $!";
+  my @rec_dirs = grep {-d "$data_base/$dataset/$spkr_id/$_" && ! /^\.{1,2}$/} readdir($dh);
   closedir $dh;
 
   foreach (@rec_dirs) {
     my $rec_id = $_;
 
-    opendir my $dh, "$data_base/$dataset/aac/$spkr_id/$rec_id/" or die "Cannot open directory: $!";
-    my @files = map{s/\.[^.]+$//;$_}grep {/\.m4a$/} readdir($dh);
+    opendir my $dh, "$data_base/$dataset/$spkr_id/$rec_id/" or die "Cannot open directory: $!";
+    my @files = map{s/\.[^.]+$//;$_}grep {/\.npy$/} readdir($dh);
     closedir $dh;
 
     foreach (@files) {
       my $name = $_;
-      my $wav = "ffmpeg -v 8 -i $data_base/$dataset/aac/$spkr_id/$rec_id/$name.m4a -f wav -acodec pcm_s16le -|";
+      my $wav = "$data_base/$dataset/$spkr_id/$rec_id/$name.npy";
       my $utt_id = "$spkr_id-$rec_id-$name";
       print WAV "$utt_id", " $wav", "\n";
       print SPKR "$utt_id", " $spkr_id", "\n";
@@ -68,3 +68,4 @@ system("env LC_COLLATE=C utils/fix_data_dir.sh $out_dir");
 if (system("env LC_COLLATE=C utils/validate_data_dir.sh --no-text --no-feats $out_dir") != 0) {
   die "Error validating directory $out_dir";
 }
+

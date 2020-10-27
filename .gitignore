@@ -76,6 +76,7 @@ GSYMS
 /egs/*/*/mfcc
 /egs/*/*/plp
 /egs/*/*/exp
+/egs/*/*/exp1
 /egs/*/*/data
 /egs/*/*/wav
 /egs/*/*/enhan
@@ -160,3 +161,5 @@ GSYMS
 /src/**/CMakeLists.txt
 /build*
 .vscode
+
+/egs/*/*/feat
