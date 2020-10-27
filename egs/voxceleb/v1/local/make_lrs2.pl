@@ -19,8 +19,8 @@ if (`which ffmpeg` eq "") {
 
 ($data_base, $dataset, $out_dir) = @ARGV;
 
-if ("$dataset" ne "main" && "$dataset" ne "pretrain") {
-  die "dataset parameter must be 'main' or 'pretrain'!";
+if ("$dataset" ne "test" && "$dataset" ne "train" && "$dataset" ne "trainval"&& "$dataset" ne "clean") {
+  die "dataset parameter must be 'test' or 'pretrain'!";
 }
 
 opendir my $dh, "$data_base/$dataset" or die "Cannot open directory: $!";
