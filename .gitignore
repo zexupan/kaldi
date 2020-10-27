@@ -163,3 +163,4 @@ GSYMS
 .vscode
 
 /egs/*/*/feat
+/egs/*/*/model
