@@ -1,23 +1,25 @@
 import kaldiio, glob, numpy, tqdm
 
+run='MuSE_1'
 
-train_file = "/home/ruijie/database/eer/MuSE/test"
+for fdr in ['test','train']:
+	train_file = "/home/panzexu/Download/eer/runs/%s/%s"%(run,fdr)
 
-train_files = glob.glob("%s/*/*/*.npy"%train_file)
-print(len(train_files), train_files[0])
+	train_files = glob.glob("%s/*/*/*.npy"%train_file)
+	print(len(train_files), train_files[0])
 
-dict_vector = {}
-for file in tqdm.tqdm(train_files):
-	key = file.split('/')[-3] + '-' + file.split('/')[-2] + '-' + file.split('/')[-1].replace('.npy', '')
-	mat = numpy.load(file)
-	dict_vector[key] = mat
+	dict_vector = {}
+	for file in tqdm.tqdm(train_files):
+		key = file.split('/')[-3] + '-' + file.split('/')[-2] + '-' + file.split('/')[-1].replace('.npy', '')
+		mat = numpy.load(file)
+		dict_vector[key] = mat
 
-print(len(dict_vector))
+	print(len(dict_vector))
 
-with kaldiio.WriteHelper('ark,scp:feat/MuSE_test_feat.ark,feat/MuSE_test_feat.scp') as writer:	
-	for key in dict_vector.keys():
-		mat = dict_vector[key]
-		writer(key, mat)
+	with kaldiio.WriteHelper('ark,scp:feat/%s_%s_feat.ark,feat/%s_%s_feat.scp'%(run,fdr,run,fdr)) as writer:	
+		for key in dict_vector.keys():
+			mat = dict_vector[key]
+			writer(key, mat)
 
 # file = "/home/ruijie/kaldi/egs/voxceleb2/v2/feat/trials"
 # file_o = "/home/ruijie/kaldi/egs/voxceleb2/v2/feat/new_trials"

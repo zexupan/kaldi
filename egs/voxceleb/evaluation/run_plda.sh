@@ -4,7 +4,7 @@
 
 set -e
 
-id=kaldi
+id=MuSE_1
 voxceleb2_root=/home/panzexu/Download/eer/runs/${id}/
 
 voxceleb1_trials=/home/panzexu/workspace/kaldi/egs/voxceleb/evaluation/feat/new_trials
