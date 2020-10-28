@@ -4,14 +4,15 @@
 
 set -e
 
-id=MuSE_1
-voxceleb2_root=/home/panzexu/Download/eer/runs/${id}/
+id=MuSE
 
-voxceleb1_trials=/home/panzexu/workspace/kaldi/egs/voxceleb/evaluation/feat/new_trials
-voxceleb2_train_save_root=/home/panzexu/workspace/kaldi/egs/voxceleb/evaluation/feat/data_train
-voxceleb2_test_save_root=/home/panzexu/workspace/kaldi/egs/voxceleb/evaluation/feat/data_test
+voxceleb2_root=/home/zexu/Download/eer/runs/${id}/
 
-stage=0
+voxceleb1_trials=/home/zexu/workspace/kaldi/egs/voxceleb/evaluation/feat/new_trials
+voxceleb2_train_save_root=/home/zexu/workspace/kaldi/egs/voxceleb/evaluation/feat/data_train
+voxceleb2_test_save_root=/home/zexu/workspace/kaldi/egs/voxceleb/evaluation/feat/data_test
+
+stage=1
 
 if [ $stage -le 0 ]; then
   local/make_voxceleb2.pl $voxceleb2_root train $voxceleb2_train_save_root
