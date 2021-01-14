@@ -1,9 +1,9 @@
 import kaldiio, glob, numpy, tqdm
 
-run='MuSE'
+run='qkv_gau_train'
 
 for fdr in ['test','train']:
-	train_file = "/home/zexu/Download/eer/runs/%s/%s"%(run,fdr)
+	train_file = "/home/panzexu/Download/eer/runs/%s/%s"%(run,fdr)
 
 	train_files = glob.glob("%s/*/*/*.npy"%train_file)
 	print(len(train_files), train_files[0])

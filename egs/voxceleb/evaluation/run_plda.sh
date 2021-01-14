@@ -4,15 +4,15 @@
 
 set -e
 
-id=MuSE
+id=qkv_gau_train
 
-voxceleb2_root=/home/zexu/Download/eer/runs/${id}/
+voxceleb2_root=/home/panzexu/Download/eer/runs/${id}/
 
-voxceleb1_trials=/home/zexu/workspace/kaldi/egs/voxceleb/evaluation/feat/new_trials
-voxceleb2_train_save_root=/home/zexu/workspace/kaldi/egs/voxceleb/evaluation/feat/data_train
-voxceleb2_test_save_root=/home/zexu/workspace/kaldi/egs/voxceleb/evaluation/feat/data_test
+voxceleb1_trials=/home/panzexu/workspace/kaldi/egs/voxceleb/evaluation/feat/new_trials
+voxceleb2_train_save_root=/home/panzexu/workspace/kaldi/egs/voxceleb/evaluation/feat/data_train
+voxceleb2_test_save_root=/home/panzexu/workspace/kaldi/egs/voxceleb/evaluation/feat/data_test
 
-stage=1
+stage=0
 
 if [ $stage -le 0 ]; then
   local/make_voxceleb2.pl $voxceleb2_root train $voxceleb2_train_save_root
