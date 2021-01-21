@@ -1,6 +1,6 @@
 import kaldiio, glob, numpy, tqdm
 
-run='qkv_gau_train'
+run='MuSE_sync_v'
 
 for fdr in ['test','train']:
 	train_file = "/home/panzexu/Download/eer/runs/%s/%s"%(run,fdr)

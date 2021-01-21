@@ -4,7 +4,7 @@
 
 set -e
 
-id=qkv_gau_train
+id=MuSE_sync_v
 
 voxceleb2_root=/home/panzexu/Download/eer/runs/${id}/
 
